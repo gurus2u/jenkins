@@ -1,0 +1,13 @@
+FROM gcr.io/baycao/python:2.7
+
+RUN python -m pip install paramiko
+RUN python -m pip install requests 
+RUN python -m pip install urllib3
+
+RUN : \
+  && mkdir /home/jenkins \
+  && addgroup --gid 1000 jenkins \
+  && useradd --uid 1000 --gid 1000 -d /home/jenkins jenkins \
+  && chown jenkins:jenkins /home/jenkins
+  
+USER jenkins:jenkins
